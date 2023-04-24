@@ -34,7 +34,7 @@ class SudokuGenerator:
     '''
 
     def get_board(self):
-        self.board = list[]
+        self.board = [] # add list once we know the expression
         return self.board
 
     '''
@@ -259,3 +259,139 @@ def generate_sudoku(size, removed):
     sudoku.remove_cells()
     board = sudoku.get_board
     return board
+
+
+class Cell:
+    '''
+    This class represents a single cell in the Sudoku board
+    There are 81 Cells in a Board.
+    '''
+    def __init__(self, value, row, col, screen):
+        self.value = value
+        self.row = row
+        self.col = col
+        self.screen = screen
+        '''
+        Constructor for the Cell class
+        '''
+    def set_cell_value(self, value):
+        pass
+        '''
+        setter for this cell's value
+        '''
+
+    def set_sketched_value(self, value):
+        pass
+        '''
+        Setter for this cell’s sketched value
+        '''
+
+    def draw(self):
+        pass
+        '''
+        Draws this cell, along with the value inside it.
+        If this cell has a nonzero value, that value is displayed.
+        Otherwise, no value is displayed in the cell.
+        The cell is outlined red if it is currently selected
+        '''
+
+class Board:
+    def __init__(self, width, height, screen, difficulty):
+        pass
+        '''
+        Constructor for the Board class.
+        screen is a window from PyGame.
+        difficulty is a variable to indicate if the 
+        user chose easy, medium, or hard. 
+        '''
+    def draw(self):
+        pass
+        '''
+        Draws an outline of the Sudoku grid, with 
+        bold lines to delineate the 3x3 boxes.
+        Draws every cell on this board.
+        '''
+
+    def select(self,row,col):
+        pass
+        '''
+        Marks the cell at (row, col) in the board 
+        as the current selected cell.
+        Once a cell has been selected, the user can 
+        edit its value or sketched value. 
+        '''
+
+    def click(self,x,y):
+        pass
+        '''
+        If a tuple of (x, y) coordinates is within 
+        the displayed board, this function returns 
+        a tuple of the (row, col)
+        of the cell which was clicked. Otherwise, 
+        this function returns None. 
+        '''
+
+    def clear(self):
+        pass
+        '''
+        Clears the value cell. Note that the user can 
+        only remove the cell values and sketched value that are
+        filled by themselves.
+        '''
+
+    def sketch(self,value):
+        pass
+        '''
+        Sets the sketched value of the current selected cell
+        equal to user entered value.
+        It will be displayed at the top left corner of the 
+        cell using the draw() function.
+        '''
+
+    def place_number(self,value):
+        pass
+        '''
+        Sets the value of the current selected cell 
+        equal to user entered value.
+        Called when the user presses the Enter key.
+        '''
+
+    def reset_to_origional(self):
+        pass
+    '''
+    Reset all cells in the board to their original values
+    (0 if cleared, otherwise the corresponding digit). 
+    '''
+
+    def is_full(self):
+        pass
+    '''
+    returns a boolean value indicating whether the board is full or not
+    '''
+
+    def update_baord(self):
+        pass
+        '''
+        Updates the underlying 2D board with the values in all cells. 
+        '''
+
+    def find_empty(self):
+        pass
+        '''
+        Finds an empty cell and returns its row and col as a tuple (x, y). 
+        '''
+
+    def check_board(self):
+        pass
+        '''
+        Check whether the Sudoku board is solved correctly. 
+        '''
+
+def main():
+    ''''
+    main function will run here
+    '''
+
+
+if __name__ == '__main__':
+    main()
