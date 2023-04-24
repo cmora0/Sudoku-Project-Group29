@@ -32,8 +32,9 @@ class SudokuGenerator:
 	Parameters: None
 	Return: list[list]
     '''
+
     def get_board(self):
-        self.board = []
+        self.board = list[]
         return self.board
 
     '''
@@ -59,6 +60,7 @@ class SudokuGenerator:
     def valid_in_row(self, row, num):
         self.row = row
         self.num = num
+        # Need to add a way to grab row from the board.
         if self.num in self.row:
             return True
         else:
@@ -77,6 +79,7 @@ class SudokuGenerator:
     def valid_in_col(self, col, num):
         self.col = col
         self.num = num
+        # Need to add a way to grab col from the board.
         if self.num in self.col:
             return True
         else:
@@ -98,6 +101,7 @@ class SudokuGenerator:
         self.row_start = row_start
         self.col_start = col_start
         self.num = num
+        # self.box_row and self.box_col need to be able to grab the appropriate 3x3 box based on the selected cell.
         self.box_row = self.row[self.row_start : self.row_start + 3]
         self.box_col = self.col[self.col_start : self.col_start + 3]
         for row in self.box_row:
@@ -251,7 +255,7 @@ Return: list[list] (a 2D Python list to represent the board)
 def generate_sudoku(size, removed):
     sudoku = SudokuGenerator(size, removed)
     sudoku.fill_values()
-    board = sudoku.get_board()
+    board = sudoku.get_board
     sudoku.remove_cells()
-    board = sudoku.get_board()
+    board = sudoku.get_board
     return board
