@@ -25,6 +25,8 @@ class SudokuGenerator:
     def __init__(self, row_length, removed_cells):
         self.row_length = row_length
         self.removed_cells = removed_cells
+        self.board = list[]
+        self.box_length = math.sqrt(self.row_length)
 
     '''
 	Returns a 2D python list of numbers which represents the board
@@ -34,7 +36,6 @@ class SudokuGenerator:
     '''
 
     def get_board(self):
-        self.board = [] # add list once we know the expression
         return self.board
 
     '''
@@ -60,11 +61,13 @@ class SudokuGenerator:
     def valid_in_row(self, row, num):
         self.row = row
         self.num = num
-        # Need to add a way to grab row from the board.
-        if self.num in self.row:
-            return True
-        else:
-            return False
+        # Added a for statement which should iterate through each number in the specified row of the board.
+        for i in self.board[self.row]:
+            # If the number is already in that row, return False
+            if self.num == i:
+                return False
+        # Otherwise return True
+        return True
 
     '''
 	Determines if num is contained in the specified column (vertical) of the board
@@ -79,11 +82,14 @@ class SudokuGenerator:
     def valid_in_col(self, col, num):
         self.col = col
         self.num = num
-        # Need to add a way to grab col from the board.
-        if self.num in self.col:
-            return True
-        else:
-            return False
+        # Here i is a row in the board, this iterates through each row.
+        for i in self.board:
+            # This if statement checks if the given number matches the number in the self.col position of each row.
+            # Returns false if the number is already anywhere in that column.
+            if self.num == i[self.col]:
+                return False
+        # Otherwise returns true.
+        return True
 
     '''
 	Determines if num is contained in the 3x3 box specified on the board
@@ -98,17 +104,17 @@ class SudokuGenerator:
 	Return: boolean
     '''
     def valid_in_box(self, row_start, col_start, num):
-        self.row_start = row_start
-        self.col_start = col_start
-        self.num = num
-        # self.box_row and self.box_col need to be able to grab the appropriate 3x3 box based on the selected cell.
-        self.box_row = self.row[self.row_start : self.row_start + 3]
-        self.box_col = self.col[self.col_start : self.col_start + 3]
-        for row in self.box_row:
-            for col in self.box_col:
-                if self.num == self.box_col[col]:
-                    return False
-        return True
+        # Sets the row and column indices for the box
+        row_indices = range(row_start, row_start + 3)
+        col_indices = range(col_start, col_start + 3)
+        # Gets the values of the cells in the given box, and places them in a list.
+        box_values = [self.board[row][col] for row in row_indices for col in col_indices]
+        # Checks if the number is already in the box, if so it returns False
+        if num in box_values:
+            return False
+        # Otherwise returns True
+        else:
+            return True
     
     '''
     Determines if it is valid to enter num at (row, col) in the board
